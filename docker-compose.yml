@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  shibboleth-idp:
+    build: .
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    volumes:
+      - idp-config:/opt/shibboleth-idp/conf
+      - idp-logs:/opt/shibboleth-idp/logs
+
+volumes:
+  idp-config:
+  idp-logs:
