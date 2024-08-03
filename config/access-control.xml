@@ -1,0 +1,9 @@
+<Rule xsi:type="AND">
+    <Rule xsi:type="NOT">
+        <Rule xsi:type="Attribute" attributeID="unauthenticated"/>
+    </Rule>
+    <Rule xsi:type="OR">
+        <Rule xsi:type="IPAddress" cidr="0.0.0.0/0"/>
+        <!-- Add other IPs as needed -->
+    </Rule>
+</Rule>

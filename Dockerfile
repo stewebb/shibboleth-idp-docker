@@ -11,11 +11,11 @@ RUN apt-get update && \
 
 COPY downloads/shibboleth-identity-provider-${IDP_VERSION}.zip /opt/
 COPY downloads/apache-tomcat-${TOMCAT_VERSION}.tar.gz /opt/
-COPY config/idp.properties ${IDP_HOME}/conf/
-COPY config/login.config ${IDP_HOME}/conf/
-COPY config/attribute-resolver.xml ${IDP_HOME}/conf/
-COPY config/users.properties ${IDP_HOME}/conf/
-COPY config/idp-status.xml ${CATALINA_HOME}/conf/Catalina/localhost/idp-status.xml
+#COPY config/idp.properties ${IDP_HOME}/conf/
+#COPY config/login.config ${IDP_HOME}/conf/
+#COPY config/attribute-resolver.xml ${IDP_HOME}/conf/
+#COPY config/users.properties ${IDP_HOME}/conf/
+#COPY config/idp-status.xml ${CATALINA_HOME}/conf/Catalina/localhost/idp-status.xml
 
 # Extract Shibboleth IdP
 RUN unzip /opt/shibboleth-identity-provider-${IDP_VERSION}.zip -d /opt
@@ -26,10 +26,19 @@ RUN mv /opt/shibboleth-identity-provider-${IDP_VERSION} ${IDP_HOME}
 RUN tar -xzf /opt/apache-tomcat-${TOMCAT_VERSION}.tar.gz -C /opt
 RUN mv /opt/apache-tomcat-${TOMCAT_VERSION} ${CATALINA_HOME}
 RUN rm /opt/apache-tomcat-${TOMCAT_VERSION}.tar.gz
-#RUN mkdir ${CATALINA_HOME}/webapps/idp/
+RUN mkdir ${CATALINA_HOME}/webapps/idp/
+
+RUN mkdir /opt/cache/
+
+COPY config/idp.properties ${IDP_HOME}/conf/
+COPY config/login.config ${IDP_HOME}/conf/
+COPY config/attribute-resolver.xml ${IDP_HOME}/conf/
+COPY config/users.properties ${IDP_HOME}/conf/
+#COPY config/access-control.xml ${IDP_HOME}/conf/
+#COPY config/idp-status.xml ${CATALINA_HOME}/conf/Catalina/localhost/idp-status.xml
 
 # Copy IdP to Tomcat webapps
-#RUN cp -r ${IDP_HOME}/webapp/* ${CATALINA_HOME}/webapps/idp/
+RUN cp -r ${IDP_HOME}/webapp/* ${CATALINA_HOME}/webapps/idp/
 
 EXPOSE 8080 8443
 
