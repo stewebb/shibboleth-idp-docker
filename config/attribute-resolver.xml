@@ -1,0 +1,38 @@
+<!-- attribute-resolver.xml -->
+<resolver:AttributeDefinition xsi:type="ad:Simple" id="uid" sourceAttributeID="uid">
+    <resolver:Dependency ref="staticUsers" />
+    <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:uid" />
+    <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:0.9.2342.19200300.100.1.1" friendlyName="uid" />
+</resolver:AttributeDefinition>
+
+<resolver:AttributeDefinition xsi:type="ad:Simple" id="mail" sourceAttributeID="mail">
+    <resolver:Dependency ref="staticUsers" />
+    <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:mail" />
+    <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:0.9.2342.19200300.100.1.3" friendlyName="mail" />
+</resolver:AttributeDefinition>
+
+<resolver:DataConnector id="staticUsers" xsi:type="dc:Static">
+    <resolver:Attribute id="uid">
+        <resolver:Value>user1</resolver:Value>
+        <resolver:Value>user2</resolver:Value>
+        <resolver:Value>user3</resolver:Value>
+    </resolver:Attribute>
+
+    <resolver:Attribute id="mail">
+        <resolver:Value>user1@example.org</resolver:Value>
+        <resolver:Value>user2@example.org</resolver:Value>
+        <resolver:Value>user3@example.org</resolver:Value>
+    </resolver:Attribute>
+
+    <resolver:Attribute id="givenName">
+        <resolver:Value>User</resolver:Value>
+        <resolver:Value>User</resolver:Value>
+        <resolver:Value>User</resolver:Value>
+    </resolver:Attribute>
+
+    <resolver:Attribute id="sn">
+        <resolver:Value>One</resolver:Value>
+        <resolver:Value>Two</resolver:Value>
+        <resolver:Value>Three</resolver:Value>
+    </resolver:Attribute>
+</resolver:DataConnector>

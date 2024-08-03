@@ -12,5 +12,5 @@ if [ ! -f "${IDP_HOME}/conf/idp.properties" ]; then
 fi
 
 # Start Tomcat
+ls /opt/tomcat
 exec ${CATALINA_HOME}/bin/catalina.sh run
-
